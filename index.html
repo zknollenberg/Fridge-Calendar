@@ -5,337 +5,300 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fridge Calendar</title>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Patrick+Hand:wght@400&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 ```
 body {
   min-height: 100vh;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px,
-      transparent 1px, transparent 60px
-    ),
-    repeating-linear-gradient(
-      180deg,
-      rgba(0,0,0,0.04) 0px, rgba(0,0,0,0.04) 1px,
-      transparent 1px, transparent 60px
-    ),
-    linear-gradient(160deg, #d0d4d8 0%, #b8bcc2 20%, #cdd1d5 40%, #b4b8be 60%, #c8ccd0 80%, #b0b4ba 100%);
+  background: #4a8fa8;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 3rem 1rem 4rem;
-  font-family: 'Caveat', cursive;
+  padding: 2.5rem 1rem 4rem;
+  font-family: 'Patrick Hand', cursive;
 }
 
-/* Fridge surface shine streaks */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 15%; width: 8%; height: 100%;
-  background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.07) 30%, rgba(255,255,255,0.12) 50%, rgba(255,255,255,0.07) 70%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  top: 0; left: 55%; width: 4%; height: 100%;
-  background: linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.09) 55%, rgba(255,255,255,0.05) 70%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* The magnetic calendar panel */
+/* Whiteboard panel */
 .calendar-panel {
   position: relative;
-  z-index: 1;
   width: 100%;
-  max-width: 900px;
-  background: rgba(240, 245, 248, 0.18);
-  backdrop-filter: blur(12px) saturate(1.2);
-  -webkit-backdrop-filter: blur(12px) saturate(1.2);
-  border: 1px solid rgba(255,255,255,0.35);
+  max-width: 960px;
+  background: #fdfdfd;
   border-radius: 6px;
-  padding: 1.5rem 1.75rem 2rem;
-  box-shadow:
-    0 2px 4px rgba(0,0,0,0.18),
-    0 8px 24px rgba(0,0,0,0.12),
-    inset 0 1px 0 rgba(255,255,255,0.4),
-    inset 0 -1px 0 rgba(0,0,0,0.08);
+  padding: 1.5rem 1.5rem 1.75rem;
+  box-shadow: 0 5px 0 #2d6e85, 0 8px 28px rgba(0,0,0,0.28);
+  border: 3px solid #2d6e85;
 }
 
-/* Subtle magnet dots at corners */
+/* Magnets */
 .magnet {
   position: absolute;
-  width: 14px; height: 14px;
+  width: 18px; height: 18px;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #e0e4e8, #9aa0a8);
-  border: 1px solid rgba(0,0,0,0.15);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.4);
+  border: 2px solid rgba(0,0,0,0.15);
+  box-shadow: 1px 2px 0 rgba(0,0,0,0.15);
 }
-.magnet.tl { top: -7px; left: 18px; }
-.magnet.tr { top: -7px; right: 18px; }
-.magnet.bl { bottom: -7px; left: 18px; }
-.magnet.br { bottom: -7px; right: 18px; }
+.magnet.tl { top: -9px; left: 26px;  background: #e63946; }
+.magnet.tr { top: -9px; right: 26px; background: #f4a261; }
+.magnet.bl { bottom: -9px; left: 26px;  background: #2a9d8f; }
+.magnet.br { bottom: -9px; right: 26px; background: #e9c46a; }
 
-/* Header row */
+/* Header */
 .cal-header {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1.5px solid #e4e4e4;
 }
 
 .month-year {
-  font-size: 2rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.92);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  letter-spacing: 0.02em;
+  font-family: 'Homemade Apple', cursive;
+  font-size: 1.6rem;
+  color: #1a1a1a;
+  letter-spacing: 0.01em;
 }
 
-.nav-btns {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
+.nav-btns { display: flex; gap: 8px; align-items: center; }
 
 .nav-btn {
-  background: rgba(255,255,255,0.15);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 4px;
-  color: rgba(255,255,255,0.85);
-  font-family: 'Caveat', cursive;
-  font-size: 1.1rem;
-  padding: 4px 14px;
+  background: #f2f2f2;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  color: #333;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1rem;
+  padding: 3px 14px;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.12s;
 }
-.nav-btn:hover { background: rgba(255,255,255,0.25); }
+.nav-btn:hover { background: #e4e4e4; }
 
-/* Day-of-week headers */
+/* Day-of-week row */
 .dow-row {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
-  margin-bottom: 4px;
+  gap: 3px;
+  margin-bottom: 3px;
 }
 
 .dow-cell {
   text-align: center;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.6);
-  padding: 2px 0 6px;
-  letter-spacing: 0.05em;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #999;
+  padding-bottom: 5px;
+  font-family: 'Patrick Hand', cursive;
 }
 
-/* Calendar grid */
+/* Calendar grid — tight, no wasted space */
 .cal-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 4px;
+  /* Each row height = width of one column = 1/7 of container */
+  grid-auto-rows: 0;
+  gap: 3px;
 }
 
+/*
+  Square cells using padding-top trick:
+  Each cell is 1/7 of the grid width.
+  We compute: col width ≈ (100% - 6*3px) / 7
+  padding-top: calc((100% + 3px) / 7 * ... is complex, 
+  so we use aspect-ratio with a min-height override via JS.
+  Simpler: use aspect-ratio on a wrapper approach.
+*/
+
+/* Actually the cleanest CSS-only square approach for grid children: */
+.cal-grid {
+  grid-auto-rows: 1fr;
+}
+
+/* Force square via pseudo element hack */
 .day-cell {
-  min-height: 90px;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 3px;
-  padding: 5px 6px 5px;
-  cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
   position: relative;
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.1s, border-color 0.1s;
   overflow: hidden;
+  /* Square: use aspect-ratio, supported in all modern browsers */
+  aspect-ratio: 1 / 1;
+  padding: 5px 6px;
+  display: flex;
+  flex-direction: column;
 }
 
 .day-cell:hover {
-  background: rgba(255,255,255,0.14);
-  border-color: rgba(255,255,255,0.28);
+  background: #eef6ff;
+  border-color: #90c0e0;
 }
 
 .day-cell.empty {
-  background: rgba(0,0,0,0.04);
-  border-color: rgba(255,255,255,0.05);
+  background: #f7f7f7;
+  border-color: #f0f0f0;
   cursor: default;
   pointer-events: none;
 }
 
 .day-cell.today {
-  background: rgba(255,255,255,0.15);
-  border-color: rgba(255,255,255,0.45);
+  background: #e8f4fd;
+  border: 1.5px solid #3a90cc;
 }
 
 .day-num {
-  font-size: 1rem;
-  font-weight: 500;
-  color: rgba(255,255,255,0.55);
+  font-family: 'Patrick Hand', cursive;
+  font-size: 0.82rem;
+  color: #bbb;
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
+  flex-shrink: 0;
 }
 
-.day-cell.today .day-num {
-  color: rgba(255,255,255,0.95);
-}
+.day-cell.today .day-num { color: #1a70b8; font-size: 0.85rem; }
 
 .event-list {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
+  overflow: hidden;
+  flex: 1;
+  min-height: 0;
 }
 
 .event-item {
-  font-size: 0.88rem;
-  line-height: 1.2;
-  word-break: break-word;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 0.78rem;
+  line-height: 1.25;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: normal;
+  hyphens: none;
   cursor: pointer;
-  padding: 1px 2px;
-  border-radius: 2px;
 }
+.event-item:hover { text-decoration: line-through; opacity: 0.5; }
 
-.event-item:hover {
-  text-decoration: line-through;
-  opacity: 0.7;
-}
-
-/* Modal overlay */
+/* Modal */
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.35);
-  backdrop-filter: blur(3px);
+  background: rgba(0,0,0,0.38);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.2s;
+  transition: opacity 0.16s;
 }
-
-.modal-overlay.open {
-  opacity: 1;
-  pointer-events: all;
-}
+.modal-overlay.open { opacity: 1; pointer-events: all; }
 
 .modal {
-  background: rgba(220, 228, 235, 0.82);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.5);
-  border-radius: 6px;
+  background: #fdfdfd;
+  border: 2.5px solid #2d6e85;
+  border-radius: 8px;
   padding: 1.5rem 1.75rem;
-  width: 320px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.5);
-  transform: scale(0.96);
-  transition: transform 0.2s;
+  width: 300px;
+  box-shadow: 0 4px 0 #2d6e85, 0 8px 24px rgba(0,0,0,0.2);
+  transform: scale(0.95);
+  transition: transform 0.16s;
 }
-
-.modal-overlay.open .modal {
-  transform: scale(1);
-}
+.modal-overlay.open .modal { transform: scale(1); }
 
 .modal-date {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: rgba(40,40,40,0.85);
+  font-family: 'Homemade Apple', cursive;
+  font-size: 1.2rem;
+  color: #1a1a1a;
   margin-bottom: 1rem;
+  line-height: 1.4;
 }
 
 .modal input[type="text"] {
   width: 100%;
-  background: rgba(255,255,255,0.5);
-  border: 1px solid rgba(255,255,255,0.7);
+  background: #fff;
+  border: 1.5px solid #ccc;
   border-radius: 4px;
-  font-family: 'Caveat', cursive;
-  font-size: 1.2rem;
-  color: #222;
-  padding: 8px 10px;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1.15rem;
+  color: #111;
+  padding: 7px 10px;
   outline: none;
   margin-bottom: 1rem;
 }
-
-.modal input[type="text"]::placeholder { color: rgba(60,60,60,0.4); }
-.modal input[type="text"]:focus { border-color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.65); }
+.modal input[type="text"]::placeholder { color: #ccc; }
+.modal input[type="text"]:focus { border-color: #4a8fa8; }
 
 .color-row {
   display: flex;
-  gap: 8px;
+  gap: 7px;
   align-items: center;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.1rem;
+  flex-wrap: wrap;
 }
 
 .color-label {
+  font-family: 'Patrick Hand', cursive;
   font-size: 0.95rem;
-  color: rgba(40,40,40,0.6);
-  margin-right: 2px;
+  color: #666;
 }
 
 .color-swatch {
   width: 22px; height: 22px;
   border-radius: 50%;
-  border: 2px solid transparent;
+  border: 2.5px solid transparent;
   cursor: pointer;
-  transition: transform 0.1s, border-color 0.1s;
+  transition: transform 0.1s;
 }
-
 .color-swatch:hover { transform: scale(1.15); }
-.color-swatch.selected { border-color: rgba(0,0,0,0.4); transform: scale(1.2); }
+.color-swatch.selected { border-color: #111; transform: scale(1.2); }
 
-.modal-actions {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-}
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
 
 .btn-cancel {
-  font-family: 'Caveat', cursive;
-  font-size: 1.05rem;
-  background: rgba(0,0,0,0.08);
-  border: 1px solid rgba(0,0,0,0.12);
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1rem;
+  background: #f0f0f0;
+  border: 1.5px solid #ccc;
   border-radius: 4px;
-  padding: 6px 18px;
+  padding: 5px 16px;
   cursor: pointer;
-  color: rgba(40,40,40,0.7);
-  transition: background 0.15s;
+  color: #555;
 }
-.btn-cancel:hover { background: rgba(0,0,0,0.13); }
+.btn-cancel:hover { background: #e4e4e4; }
 
 .btn-save {
-  font-family: 'Caveat', cursive;
-  font-size: 1.05rem;
-  background: rgba(80,100,120,0.5);
-  border: 1px solid rgba(255,255,255,0.4);
+  font-family: 'Patrick Hand', cursive;
+  font-size: 1rem;
+  background: #4a8fa8;
+  border: 1.5px solid #2d6e85;
   border-radius: 4px;
-  padding: 6px 22px;
+  padding: 5px 20px;
   cursor: pointer;
-  color: rgba(255,255,255,0.92);
-  transition: background 0.15s;
+  color: #fff;
 }
-.btn-save:hover { background: rgba(80,100,120,0.7); }
+.btn-save:hover { background: #3a7a94; }
 
 .status-bar {
   text-align: center;
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.45);
-  margin-top: 1rem;
-  min-height: 1.2em;
+  font-family: 'Patrick Hand', cursive;
+  font-size: 0.85rem;
+  color: #bbb;
+  margin-top: 0.75rem;
+  min-height: 1.1em;
 }
 
-/* Config banner shown when Supabase not yet set up */
 .config-banner {
-  background: rgba(255,200,100,0.25);
-  border: 1px solid rgba(255,200,100,0.5);
+  background: #fff8e1;
+  border: 1.5px solid #f0c040;
   border-radius: 4px;
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 1rem;
   margin-bottom: 1rem;
-  font-size: 0.95rem;
-  color: rgba(255,255,255,0.85);
+  font-size: 0.9rem;
+  color: #5a4000;
   text-align: center;
   display: none;
 }
@@ -354,7 +317,7 @@ body::after {
 
 ```
 <div class="config-banner" id="config-banner">
-  ⚠️ Add your Supabase URL and anon key in the script below to enable saving.
+  ⚠️ Add your Supabase credentials in the script to enable saving.
 </div>
 
 <div class="cal-header">
@@ -381,22 +344,20 @@ body::after {
 
   </div>
 
-  <!-- Add event modal -->
-
   <div class="modal-overlay" id="modal-overlay">
     <div class="modal">
       <div class="modal-date" id="modal-date">—</div>
       <input type="text" id="event-input" placeholder="add an event…" maxlength="60" />
       <div class="color-row">
         <span class="color-label">color:</span>
-        <div class="color-swatch selected" data-color="#ffffff" style="background:#ffffff;" title="white"></div>
-        <div class="color-swatch" data-color="#ff6b6b" style="background:#ff6b6b;" title="red"></div>
-        <div class="color-swatch" data-color="#ffa94d" style="background:#ffa94d;" title="orange"></div>
-        <div class="color-swatch" data-color="#ffe066" style="background:#ffe066;" title="yellow"></div>
-        <div class="color-swatch" data-color="#69db7c" style="background:#69db7c;" title="green"></div>
-        <div class="color-swatch" data-color="#74c0fc" style="background:#74c0fc;" title="blue"></div>
-        <div class="color-swatch" data-color="#da77f2" style="background:#da77f2;" title="purple"></div>
-        <div class="color-swatch" data-color="#f783ac" style="background:#f783ac;" title="pink"></div>
+        <div class="color-swatch selected" data-color="#111111" style="background:#111111;" title="black"></div>
+        <div class="color-swatch" data-color="#e63946" style="background:#e63946;" title="red"></div>
+        <div class="color-swatch" data-color="#e07820" style="background:#e07820;" title="orange"></div>
+        <div class="color-swatch" data-color="#b8860b" style="background:#b8860b;" title="yellow"></div>
+        <div class="color-swatch" data-color="#2a9d5c" style="background:#2a9d5c;" title="green"></div>
+        <div class="color-swatch" data-color="#1565c0" style="background:#1565c0;" title="blue"></div>
+        <div class="color-swatch" data-color="#7b1fa2" style="background:#7b1fa2;" title="purple"></div>
+        <div class="color-swatch" data-color="#c2185b" style="background:#c2185b;" title="pink"></div>
       </div>
       <div class="modal-actions">
         <button class="btn-cancel" id="btn-cancel">cancel</button>
@@ -405,16 +366,11 @@ body::after {
     </div>
   </div>
 
-  <!-- Load Supabase from CDN -->
-
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 
   <script>
-    // ─────────────────────────────────────────────
-    // 🔧 PASTE YOUR SUPABASE CREDENTIALS HERE
     const SUPABASE_URL  = 'https://pegvjortvnivhtggdghb.supabase.co';
     const SUPABASE_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBlZ3Zqb3J0dm5pdmh0Z2dkZ2hiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM3MTQ3MDAsImV4cCI6MjA4OTI5MDcwMH0.3KrhuP9nIADb66LugJYBj2dnqst196uVPgNaBZiuAJo';
-    // ─────────────────────────────────────────────
 
     const configured = SUPABASE_URL !== 'YOUR_SUPABASE_URL';
     let sb = null;
@@ -424,31 +380,27 @@ body::after {
       document.getElementById('config-banner').classList.add('visible');
     }
 
-    // State
     const today = new Date();
     let viewYear  = today.getFullYear();
-    let viewMonth = today.getMonth(); // 0-indexed
-    let events    = {}; // { 'YYYY-MM-DD': [{id, text, color}] }
+    let viewMonth = today.getMonth();
+    let events    = {};
     let selectedDate = null;
-    let selectedColor = '#ffffff';
+    let selectedColor = '#111111';
 
-    // Month names
     const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-
-    // ── Supabase helpers ──────────────────────────
 
     async function loadEvents() {
       if (!sb) return;
       setStatus('loading…');
       const start = `${viewYear}-${String(viewMonth+1).padStart(2,'0')}-01`;
       const lastDay = new Date(viewYear, viewMonth+1, 0).getDate();
-      const end   = `${viewYear}-${String(viewMonth+1).padStart(2,'0')}-${String(lastDay).padStart(2,'0')}`;
+      const end = `${viewYear}-${String(viewMonth+1).padStart(2,'0')}-${String(lastDay).padStart(2,'0')}`;
       const { data, error } = await sb.from('events').select('*').gte('date', start).lte('date', end);
       if (error) { setStatus('error loading events'); return; }
       events = {};
       (data || []).forEach(e => {
         if (!events[e.date]) events[e.date] = [];
-        events[e.date].push({ id: e.id, text: e.text, color: e.color || '#ffffff' });
+        events[e.date].push({ id: e.id, text: e.text, color: e.color || '#111111' });
       });
       setStatus('');
       renderGrid();
@@ -456,7 +408,6 @@ body::after {
 
     async function saveEvent(date, text, color) {
       if (!sb) {
-        // local-only fallback
         if (!events[date]) events[date] = [];
         events[date].push({ id: Date.now(), text, color });
         renderGrid();
@@ -486,8 +437,6 @@ body::after {
       renderGrid();
     }
 
-    // ── Render ────────────────────────────────────
-
     function renderHeader() {
       document.getElementById('month-year').textContent = `${MONTHS[viewMonth]} ${viewYear}`;
     }
@@ -495,11 +444,9 @@ body::after {
     function renderGrid() {
       const grid = document.getElementById('cal-grid');
       grid.innerHTML = '';
-
       const firstDow = new Date(viewYear, viewMonth, 1).getDay();
       const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
 
-      // Empty cells before the 1st
       for (let i = 0; i < firstDow; i++) {
         const cell = document.createElement('div');
         cell.className = 'day-cell empty';
@@ -509,26 +456,24 @@ body::after {
       for (let d = 1; d <= daysInMonth; d++) {
         const cell = document.createElement('div');
         cell.className = 'day-cell';
-
         const isToday = (d === today.getDate() && viewMonth === today.getMonth() && viewYear === today.getFullYear());
         if (isToday) cell.classList.add('today');
 
         const dateStr = `${viewYear}-${String(viewMonth+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
 
-        // Day number
         const numEl = document.createElement('div');
         numEl.className = 'day-num';
         numEl.textContent = d;
         cell.appendChild(numEl);
 
-        // Events
         const evList = document.createElement('div');
         evList.className = 'event-list';
         (events[dateStr] || []).forEach(ev => {
           const el = document.createElement('div');
           el.className = 'event-item';
           el.textContent = ev.text;
-          el.style.color = ev.color || '#ffffff';
+          const c = ev.color;
+          el.style.color = (c === '#ffffff' || c === '#fff') ? '#111111' : (c || '#111111');
           el.title = 'click to remove';
           el.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -537,22 +482,16 @@ body::after {
           evList.appendChild(el);
         });
         cell.appendChild(evList);
-
-        // Click to add
         cell.addEventListener('click', () => openModal(dateStr, d));
-
         grid.appendChild(cell);
       }
     }
 
-    // ── Modal ─────────────────────────────────────
-
     function openModal(dateStr, dayNum) {
       selectedDate = dateStr;
-      const label = `${MONTHS[viewMonth]} ${dayNum}, ${viewYear}`;
-      document.getElementById('modal-date').textContent = label;
+      document.getElementById('modal-date').textContent = `${MONTHS[viewMonth]} ${dayNum}, ${viewYear}`;
       document.getElementById('event-input').value = '';
-      setSelectedColor('#ffffff');
+      setSelectedColor('#111111');
       document.getElementById('modal-overlay').classList.add('open');
       setTimeout(() => document.getElementById('event-input').focus(), 120);
     }
@@ -573,24 +512,19 @@ body::after {
     document.getElementById('modal-overlay').addEventListener('click', (e) => {
       if (e.target === document.getElementById('modal-overlay')) closeModal();
     });
-
     document.getElementById('btn-save').addEventListener('click', () => {
       const text = document.getElementById('event-input').value.trim();
       if (!text) return;
       saveEvent(selectedDate, text, selectedColor);
       closeModal();
     });
-
     document.getElementById('event-input').addEventListener('keydown', (e) => {
       if (e.key === 'Enter') document.getElementById('btn-save').click();
       if (e.key === 'Escape') closeModal();
     });
-
     document.querySelectorAll('.color-swatch').forEach(s => {
       s.addEventListener('click', () => setSelectedColor(s.dataset.color));
     });
-
-    // ── Navigation ────────────────────────────────
 
     document.getElementById('prev-btn').addEventListener('click', () => {
       viewMonth--;
@@ -600,7 +534,6 @@ body::after {
       renderGrid();
       loadEvents();
     });
-
     document.getElementById('next-btn').addEventListener('click', () => {
       viewMonth++;
       if (viewMonth > 11) { viewMonth = 0; viewYear++; }
@@ -610,13 +543,9 @@ body::after {
       loadEvents();
     });
 
-    // ── Status ────────────────────────────────────
-
     function setStatus(msg) {
       document.getElementById('status-bar').textContent = msg;
     }
-
-    // ── Init ──────────────────────────────────────
 
     renderHeader();
     renderGrid();
